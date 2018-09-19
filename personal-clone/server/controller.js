@@ -16,6 +16,10 @@ getItem: (req, res) => {
     db.get_item(req.params.id).then(item => {
         res.status(200).send(item)
     })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send(err);
+      });
 }
 
 }
