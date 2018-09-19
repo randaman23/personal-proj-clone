@@ -23,6 +23,9 @@ massive(CONNECTION_STRING).then(db => app.set('db', db))
 
 app.get('/auth/callback', auth.login)
 
+app.get('/api/products/:category', controller.getProducts)
+app.get('/api/item/:id', controller.getItem)
+
 
 
 
