@@ -23,7 +23,7 @@ class Category extends Component {
           return(
               <Products
               key={e.product_id}
-              id={e.category}
+              id={e.product_id}
               name={e.product_name}
               price={e.price}
               image={e.image_url}

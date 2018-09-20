@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const massive = require('massive'),
     express = require('express'),
-    // session = require('express-session')
+    session = require('express-session')
     axios = require('axios')
 controller = require('./controller')
 auth = require('./auth_controller')
@@ -19,13 +19,20 @@ const {
     CLIENT_SECRET
 } = process.env
 
+app.use(session({
+    secret: SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true
+}))
+
 massive(CONNECTION_STRING).then(db => app.set('db', db))
 
 app.get('/auth/callback', auth.login)
+app.get('/api/user-data', auth.userData)
 
 app.get('/api/products/:category', controller.getProducts)
 app.get('/api/item/:id', controller.getItem)
-
+app.post('/api/additem', controller.addItem)
 
 
 
