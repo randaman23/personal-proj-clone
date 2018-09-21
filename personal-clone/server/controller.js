@@ -1,3 +1,4 @@
+
 module.exports = {
   getProducts: (req, res) => {
     const db = req.app.get("db");
@@ -25,14 +26,14 @@ module.exports = {
 
   addItem: (req, res) => {
     const db = req.app.get("db");
-    const { user_id, product_id, color_id, quantity, size } = req.body;
-    db.add_item({ user_id, product_id, color_id, quantity, size })
-      .then(user => {
-        res.status(200).send(user);
+    const { product_id, selectColor, selectQuantity, selectSize } = req.body;
+    db.add_item({ user_id: req.session.user.user_id, product_id, selectColor, selectQuantity, selectSize })
+      .then(cart => {
+        res.status(200).send(cart);
       })
       .catch(err => {
         console.log(err);
-        res.status(500).send(err);
+        res.status(401).send(err);
       });
   }
 };

@@ -13,10 +13,7 @@ const app = express()
 const {
     SERVER_PORT,
     CONNECTION_STRING,
-    SESSION_SECRET,
-    REACT_APP_DOMAIN,
-    REACT_APP_CLIENT_ID,
-    CLIENT_SECRET
+    SESSION_SECRET
 } = process.env
 
 app.use(session({

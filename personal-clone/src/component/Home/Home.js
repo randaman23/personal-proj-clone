@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 import Header from "../Header/Header";
+import axios from 'axios'
 
 class Home extends Component {
+
+  async componentDidMount() {
+    let res = await axios.get("/api/user-data");
+   console.log(res.data)
+  }
+
   render() {
     return (
       <div>

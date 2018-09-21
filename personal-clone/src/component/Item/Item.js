@@ -1,58 +1,87 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Header from "../Header/Header";
-import Products from '../Products/Products'
+
 
 class Item extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
-      item: []
-    }
-    this.componentDidMount = this.componentDidMount.bind(this)
+      item: {},
+      colors: [],
+      category: '',
+      selectColor: '',
+      selectSize: '',
+      selectQuantity: 0,
+      images: [],
+      selectedImage: ''
+    };
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.handleColor = this.handleColor.bind(this)
   }
 
   componentDidMount() {
     axios
       .get(`/api/item/${this.props.match.params.id}`)
-      .then(res => this.setState({item: res.data}))
+      .then(res => 
+        this.setState({ item: res.data[0], 
+          colors: res.data.map(e => e.color), 
+          category: res.data[0].category,
+          selectedImage: res.data[0].image_url,
+          images: res.data.map(e => {return {url: e.image_url,
+           color: e.color }})
+        })
+      );
   }
 
-  addItem(){
-    axios.post('/api/additem',{})
+  addItem() {
+    const {product_id} = this.state.item
+    const {selectColor, selectSize, selectQuantity} = this.state
+    axios.post("/api/additem", {product_id, selectColor, selectSize, selectQuantity})
+    .then()
+    .catch();
+  }
+
+  handleColor(e) {
+    this.setState({selectColor: e.target.value, selectedImage: this.state.images.find((image) => image.color === e.target.value).url})
+  }
+
+  handleSize(e){
+    this.setState({selectSize: e.target.value})
+  }
+
+  handleQuantity(e){
+    this.setState({selectQuantity: e.target.value})
   }
 
   render() {
-    let itemDisplay = this.state.item.map((e, i) => {
-      return(
-        <Products
-              key={e.product_id}
-              id={e.category}
-              name={e.product_name}
-              price={e.price}
-              image={e.image_url}
-              info={e.product_info}
-              />
-      )
-    })
+    // console.log()
+    console.log(this.state);
+    let colorOptions = this.state.colors.map((e, i) => {
+      return <option key={i}>{e}</option>;
+    });
+    const {item, selectedImage} = this.state
+    
     return (
       <div>
-          <Header/>
-        <h1>Item</h1>
+        <Header />
+        <h1>{this.state.item.product_name}</h1>
+        <p>{item.price}</p>
+        <p>{item.info}</p>
+        
 
-        <select >
-          <option value="">BLACK</option>
-          <option value="">FADED RED</option>
-          <option value="">BLUE</option>
-        </select>
-        <select>
+        {colorOptions.length ? <select onChange={this.handleColor}>{colorOptions}</select> : null}
+
+       { item.category === 'apparel' ?
+       <select>
           <option value="">S</option>
           <option value="">M</option>
           <option value="">L</option>
           <option value="">XL</option>
           <option value="">XXL</option>
           <option value="">XS</option>
-        </select>
+       </select> : null
+       }
         <select>
           <option value="">ONE</option>
           <option value="">TWO</option>
@@ -66,8 +95,10 @@ class Item extends Component {
           <option value="">TEN</option>
         </select>
 
-        <button onClick={this.addItem}>Add To Cart</button>
-        {itemDisplay}
+        <button onClick={this.addItem}>ADD TO CART</button>
+
+        <img src={selectedImage} alt=""/>
+        
       </div>
     );
   }

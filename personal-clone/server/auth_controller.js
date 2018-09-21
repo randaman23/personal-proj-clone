@@ -1,3 +1,8 @@
+require('dotenv').config()
+const {REACT_APP_DOMAIN,
+  REACT_APP_CLIENT_ID,
+  CLIENT_SECRET} = process.env
+
 module.exports ={
 
 login: async (req, res) =>{
@@ -13,13 +18,13 @@ let tokenRes = await axios.post(`https://${REACT_APP_DOMAIN}/oauth/token`, paylo
 let userRes = await axios.get(`https://${REACT_APP_DOMAIN}/userinfo?access_token=${tokenRes.data.access_token}`)
 
   const db = req.app.get('db')
-  const {first_name, last_name, email, auth_id} = userRes.data
+  const {given_name, family_name, email, sub} = userRes.data
 
   let foundUser = await db.find_user([sub])
   if(foundUser[0]) {
       req.session.user = foundUser[0];
   } else {
-    let createdUser = await db.create_user([first_name, last_name, email, auth_id])
+    let createdUser = await db.create_user([given_name, family_name, email, sub])
     req.session.user = createdUser[0]
   }
   res.redirect('/')

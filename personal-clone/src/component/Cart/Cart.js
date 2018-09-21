@@ -7,6 +7,7 @@ class Cart extends Component {
       <div>
           <Header/>
         <h1>Cart</h1>
+        <button>CHECKOUT</button>
       </div>
     );
   }
