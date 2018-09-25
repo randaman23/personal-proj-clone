@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Header from "../Header/Header";
+import {addToCart}  from "../../ducks/reducer"
+import {connect} from "react-redux"
 
 
 class Item extends Component {
@@ -12,12 +14,13 @@ class Item extends Component {
       category: '',
       selectColor: '',
       selectSize: '',
-      selectQuantity: 0,
+      selectQuantity: 1,
       images: [],
       selectedImage: ''
     };
     this.componentDidMount = this.componentDidMount.bind(this);
     this.handleColor = this.handleColor.bind(this)
+    this.addItem = this.addItem.bind(this)
   }
 
   componentDidMount() {
@@ -36,10 +39,9 @@ class Item extends Component {
 
   addItem() {
     const {product_id} = this.state.item
-    const {selectColor, selectSize, selectQuantity} = this.state
-    axios.post("/api/additem", {product_id, selectColor, selectSize, selectQuantity})
-    .then()
-    .catch();
+    const {selectQuantity} = this.state
+    axios.post("/api/additem", {product_id, selectQuantity})
+    .then(res => this.props.addToCart(res.data))
   }
 
   handleColor(e) {
@@ -64,7 +66,7 @@ class Item extends Component {
     
     return (
       <div>
-        <Header />
+        <Header/>
         <h1>{this.state.item.product_name}</h1>
         <p>{item.price}</p>
         <p>{item.info}</p>
@@ -103,5 +105,10 @@ class Item extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    cart: state.cart
+  }
+}
 
-export default Item;
+export default connect(mapStateToProps, {addToCart})(Item);

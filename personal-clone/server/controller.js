@@ -26,8 +26,9 @@ module.exports = {
 
   addItem: (req, res) => {
     const db = req.app.get("db");
-    const { product_id, selectColor, selectQuantity, selectSize } = req.body;
-    db.add_item({ user_id: req.session.user.user_id, product_id, selectColor, selectQuantity, selectSize })
+    const { product_id, selectQuantity } = req.body;
+    console.log(req.body)
+    db.add_item([ req.session.user.user_id, product_id, selectQuantity ])
       .then(cart => {
         res.status(200).send(cart);
       })
@@ -35,5 +36,17 @@ module.exports = {
         console.log(err);
         res.status(401).send(err);
       });
+  },
+
+  cartCount: (req, res) => {
+    const db = req.app.get("db")
+    db.cart_count([req.session.user.user_id])
+    .then(count => {
+      res.status(200).send(count)
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send(err);
+    });
   }
 };

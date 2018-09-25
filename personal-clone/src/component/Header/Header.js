@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { cartCount } from "../../ducks/reducer";
+import { connect } from "react-redux";
 
 class Header extends Component {
   constructor() {
@@ -11,6 +14,11 @@ class Header extends Component {
     this.closeMenu = this.closeMenu.bind(this);
   }
 
+  componentDidMount() {
+    axios.get(`/api/cartcount`)
+    .then(count => this.props.cartCount(count.data[0].count));
+  }
+
   showMenu(e) {
     e.preventDefault();
     this.setState({ showMenu: true }, () => {
@@ -20,16 +28,18 @@ class Header extends Component {
 
   closeMenu(e) {
     // if (!this.dropdownMenu.contains(e.target)) {
-      this.setState({ showMenu: false }, () => {
-        document.removeEventListener("click", this.closeMenu);
-      });
+    this.setState({ showMenu: false }, () => {
+      document.removeEventListener("click", this.closeMenu);
+    });
     // }
   }
 
   render() {
+    console.log(this.props);
+    let {count} = this.props
     return (
       <div>
-        <h1>Header</h1>
+       
         <Link to="/">
           <img
             src="https://cdn.shopify.com/s/files/1/1668/0025/t/8/assets/Sundance.svg?14038820506006361377"
@@ -45,24 +55,30 @@ class Header extends Component {
               this.dropdownMenu = element;
             }}
           >
-              <Link to="/store">
-              <button>Shop</button> <br/>
-              </Link>
-              <button>Activities</button> <br/>
-              <button>Events</button> <br/>
-              <button>Stay</button>
-            
+            <Link to="/store">
+              <button>Shop</button> <br />
+            </Link>
+            <button>Activities</button> <br />
+            <button>Events</button> <br />
+            <button>Stay</button>
           </div>
         ) : null}
         <Link to="/login">
-        <button>Login</button>
+          <button>Login</button>
         </Link>
+        <div>{count}</div>
         <Link to="/cart">
-        <button>Cart</button>
+          <button>Cart</button>
         </Link>
       </div>
     );
   }
 }
 
-export default Header;
+function mapStateToProps(state) {
+  return{
+    count: state.count
+  }
+}
+
+export default connect(mapStateToProps, {cartCount})(Header);
