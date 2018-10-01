@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import {HashRouter, Route, Switch} from 'react-router-dom'
 import Cart from './component/Cart/Cart'
 import Category from './component/Category/Category'

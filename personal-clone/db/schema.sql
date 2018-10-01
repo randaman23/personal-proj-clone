@@ -29,7 +29,10 @@ color_id int references color(color_id)
 
 create table cart(
 cart_id serial primary key,
-quantity int,
+quantity text,
+size text,
+color_id int references color(color_id),
 user_id int references users(user_id),
 product_id int references products(product_id)
 )
+

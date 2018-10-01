@@ -46,6 +46,9 @@ app.get('/api/products/:category', controller.getProducts)
 app.get('/api/item/:id', controller.getItem)
 app.post('/api/additem', controller.addItem)
 app.get('/api/cartcount', controller.cartCount)
+app.get('/api/getusercart', controller.getCart)
+
+app.delete('/api/item/:id', controller.deleteItem)
 
 
 

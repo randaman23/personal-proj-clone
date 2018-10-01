@@ -1,0 +1,20 @@
+.cart_display{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.cart_image{
+    width: 125px;
+    height: 182px;
+}
+
+.cart_name{
+    width: 242.5px;
+    height: 32;
+    font-size: 1.08153rem;
+    text-align: center;
+    // font-family: Helvetica,Arial,Verdana,sans-serif;
+}
