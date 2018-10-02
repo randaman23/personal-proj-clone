@@ -15,8 +15,9 @@ class Header extends Component {
   }
 
   componentDidMount() {
-    axios.get(`/api/cartcount`)
-    .then(count => this.props.cartCount(count.data[0].count));
+    axios
+      .get(`/api/cartcount`)
+      .then(count => this.props.cartCount(count.data[0].count));
   }
 
   showMenu(e) {
@@ -36,17 +37,9 @@ class Header extends Component {
 
   render() {
     console.log(this.props);
-    let {count} = this.props
+    let { count } = this.props;
     return (
-      <div>
-       
-        <Link to="/">
-          <img
-            src="https://cdn.shopify.com/s/files/1/1668/0025/t/8/assets/Sundance.svg?14038820506006361377"
-            alt=""
-          />
-        </Link>
-
+      <div className="main_header">
         <button onClick={this.showMenu}>Menu</button>
         {this.state.showMenu ? (
           <div
@@ -63,12 +56,19 @@ class Header extends Component {
             <button>Stay</button>
           </div>
         ) : null}
-        <Link to="/login">
-          <button>Login</button>
+
+        <Link to="/">
+          <img
+            src="https://cdn.shopify.com/s/files/1/1668/0025/t/8/assets/Sundance.svg?14038820506006361377"
+            alt=""
+          />
         </Link>
         <div>{count}</div>
         <Link to="/cart">
           <button>Cart</button>
+        </Link>
+        <Link to="/login">
+          <button>Login</button>
         </Link>
       </div>
     );
@@ -76,9 +76,12 @@ class Header extends Component {
 }
 
 function mapStateToProps(state) {
-  return{
+  return {
     count: state.count
-  }
+  };
 }
 
-export default connect(mapStateToProps, {cartCount})(Header);
+export default connect(
+  mapStateToProps,
+  { cartCount }
+)(Header);

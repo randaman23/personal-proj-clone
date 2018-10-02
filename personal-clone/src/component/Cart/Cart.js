@@ -22,34 +22,27 @@ class Cart extends Component {
   }
 
   deleteItem() {
+    let cart = this.state.cart.map((e) => e.cart_id)
     axios
-      .delete(`/api/item/${this.props.match.params.id}`)
+      .delete('/api/delete', {cart})
       .then(res => this.setState({ cart: res.data }));
   }
 
-  handleIncrease() {
+  handleIncrease() {}
 
-  }
-
-  handleDecrease(){
-
-  }
+  handleDecrease() {}
 
   render() {
     console.log(this.state);
-    let items = this.state.cart.map((e, i) => {
+    let items = this.state.cart.map((e) => {
       return (
-        <div className="cart_display" key={i}>
-          <img src={e.image_url} alt="product" className="cart_image"/>
+        <div className="cart_display" key={e.cart_id}>
+          <img src={e.image_url} alt="product" className="cart_image" />
           <h1 className="cart_name">{e.product_name}</h1>
-          <p>{e.name}</p>
-          <p>{e.size}</p>
-          <p>{e.quantity}</p>
-          <p>{e.price}</p>
-
-          <button>+</button>
-          <button>-</button>
-          <button onClick={this.deleteItem}>Delete</button>
+          <p>{e.name}</p> 
+           <p>{e.size}</p> 
+          <span>{e.price} x {e.quantity} = ${(+e.price.slice(1) * e.quantity).toFixed(2)}  <button onClick={this.deleteItem}>Delete</button></span>
+          <span> <button>+</button> <button>-</button> </span> 
         </div>
       );
     });
@@ -57,8 +50,9 @@ class Cart extends Component {
     return (
       <div>
         <Header />
-        {items}
+        <p>Subtotal </p>
         <button>CHECKOUT</button>
+        {this.state.cart.length ? items : null}
       </div>
     );
   }

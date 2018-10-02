@@ -25,17 +25,71 @@ module.exports = {
   },
 
   addItem: (req, res) => {
+    console.log('initialized')
     const db = req.app.get("db");
     const { product_id, selectQuantity, selectColor, selectSize } = req.body;
     console.log(req.body)
-    db.add_item([ req.session.user.user_id, product_id, selectQuantity, selectColor, selectSize ])
-      .then(cart => {
-        res.status(200).send(cart);
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(401).send(err);
-      });
+   
+    db.get_cart(req.session.user.user_id)
+    .then(cart => {
+     if(selectColor && selectSize){
+       colorIdx = cart.findIndex((e) => e.color_id === selectColor)
+       sizeIdx = cart.findIndex((e) => e.size === selectSize)
+      //  console.log('first_if', selectColor, selectSize, cart)
+       if(colorIdx !== -1 && sizeIdx !== -1){
+         console.log('fired')
+         db.quantity_increase([selectColor, selectSize, req.session.user.user_id])
+         .then(cart => res.status(200).send(cart))
+         .catch(err => {
+          console.log(err);
+          res.status(500).send(err);
+        })
+       } else{
+         db.add_item([req.session.user.user_id, product_id, selectQuantity, selectColor, selectSize])
+         .then(cart => res.status(200).send(cart))
+         .catch(err => {
+          console.log(err);
+          res.status(500).send(err);
+        })
+       }
+     }
+     else if(selectColor) {
+       colorIdx = cart.findIndex((e) => e.color_id === selectColor)
+       if(colorIdx !== -1) {
+         db.quantity_inc([selectColor, req.session.user.user_id])
+         .then(cart => res.status(200).send(cart))
+         .catch(err => {
+          console.log(err);
+          res.status(500).send(err);
+        })
+       } else{
+        db.add_item([req.session.user.user_id, product_id, selectQuantity, selectColor, selectSize])
+        .then(cart => res.status(200).send(cart))
+        .catch(err => {
+         console.log(err);
+         res.status(500).send(err);
+       })
+       }
+     }
+     else {
+      productIdx = cart.findIndex(e => e.product_id === product_id)
+      if(productIdx !== -1) {
+        db.product_quant([product_id, req.session.user.user_id])
+        .then(cart => res.status(200).send(cart))
+         .catch(err => {
+          console.log(err);
+          res.status(500).send(err);
+        })
+      } else{
+        db.add_item([req.session.user.user_id, product_id, selectQuantity, selectColor, selectSize])
+        .then(cart => res.status(200).send(cart))
+        .catch(err => {
+         console.log(err);
+         res.status(500).send(err);
+       })
+      }
+     }
+    })
   },
 
   cartCount: (req, res) => {
@@ -64,7 +118,8 @@ module.exports = {
 
   deleteItem: (req, res) => {
     const db = req.app.get("db")
-    db.delete_cart_item(req.session.user.user_id, req.params.id)
+    const {cart_id} = req.body
+    db.delete_cart_item(cart_id)
     .then(items => {
       res.status(200).send(items)
     })

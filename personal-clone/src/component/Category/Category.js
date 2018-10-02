@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Header from "../Header/Header";
-import Products from '../Products/Products'
+import Products from "../Products/Products";
 
 class Category extends Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class Category extends Component {
     this.state = {
       category: []
     };
-    this.componentDidMount = this.componentDidMount.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   componentDidMount() {
@@ -19,21 +19,20 @@ class Category extends Component {
   }
 
   render() {
-      let categoryDisplay = this.state.category.map((e,i) => {
-          return(
-              <Products
-              key={e.product_id}
-              id={e.product_id}
-              name={e.product_name}
-              price={e.price}
-              image={e.image_url}
-              />
-          )
-      })
+    let categoryDisplay = this.state.category.map((e, i) => {
+      return (
+        <Products
+          key={e.product_id}
+          id={e.product_id}
+          name={e.product_name}
+          price={e.price}
+          image={e.image_url}
+        />
+      );
+    });
     return (
-      <div>
-        <Header />
-        <h1>Category</h1>
+      <div className="main_category">
+        <Header/>
         {categoryDisplay}
       </div>
     );
