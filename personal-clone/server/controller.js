@@ -72,7 +72,7 @@ module.exports = {
        }
      }
      else {
-      productIdx = cart.findIndex(e => e.product_id === product_id)
+      productIdx = cart.findIndex((e) => e.product_id === product_id)
       if(productIdx !== -1) {
         db.product_quant([product_id, req.session.user.user_id])
         .then(cart => res.status(200).send(cart))
@@ -118,8 +118,8 @@ module.exports = {
 
   deleteItem: (req, res) => {
     const db = req.app.get("db")
-    const {cart_id} = req.body
-    db.delete_cart_item(cart_id)
+    const {id} = req.params
+    db.delete_cart_item([id, req.session.user.user_id])
     .then(items => {
       res.status(200).send(items)
     })
@@ -127,5 +127,52 @@ module.exports = {
       console.log(err);
       res.status(500).send(err);
     });
-  }
+  },
+
+  cartIncrease: (req, res) => {
+    const db = req.app.get("db")
+    const {id} = req.params
+    db.cart_increase([id, req.session.user.user_id])
+    .then(items => {
+      res.status(200).send(items)
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send(err);
+    });
+  },
+
+  cartDecrease: (req, res) => {
+    const db = req.app.get("db")
+    const {id} = req.params
+    db.cart_decrease([id, req.session.user.user_id])
+    .then(items => {
+      res.status(200).send(items)
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send(err);
+    });
+  },
+
+  handlePayment: (req, res) => {
+    const { total, token:{id}} = req.body
+    stripe.charges.create(
+        {
+            amount: total,
+            currency: "usd",
+            source: id,
+            description: "Test Charge from Randall"
+        },
+        (err, charge) => {
+            if(err) {
+                console.log(err)
+                return res.status(500).send(err)
+            } else {
+                console.log(charge)
+                return res.status(200).send(charge)
+            }
+        }
+    )
+}
 };

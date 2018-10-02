@@ -7,7 +7,9 @@ class Store extends Component {
     return (
       <section className="store_main">
           <Header/>
-    
+        {/* <div>
+          <img src="https://cdn.shopify.com/s/files/1/1668/0025/files/Glass_Ecomm_1200x.jpg?v=1532721248" alt=""/>
+        </div> */}
         <Link to={`/store/category/apparel`}>
         <div>Sundance Apparel</div>
         <img src="https://cdn.shopify.com/s/files/1/1668/0025/t/8/assets/home_featured_collection_1_cover_400x400.jpg?1347631453863321391" alt=""/>

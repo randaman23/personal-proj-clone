@@ -7,6 +7,7 @@ const massive = require('massive'),
     bodyParser = require('body-parser')
 controller = require('./controller')
 auth = require('./auth_controller')
+const stripe = require('stripe')
     
 
 const app = express()
@@ -17,7 +18,8 @@ const {
     SERVER_PORT,
     CONNECTION_STRING,
     SESSION_SECRET,
-    ENVIRONMENT
+    ENVIRONMENT,
+    STRIPE_SECRET
 } = process.env
 
 app.use(session({
@@ -48,7 +50,10 @@ app.post('/api/additem', controller.addItem)
 app.get('/api/cartcount', controller.cartCount)
 app.get('/api/getusercart', controller.getCart)
 
-app.delete('/api/delete', controller.deleteItem)
+app.delete('/api/delete/:id', controller.deleteItem)
+app.put('/api/increase/:id', controller.cartIncrease)
+app.put('/api/decrease/:id', controller.cartDecrease)
+app.post('/api/payment', controller.handlePayment)
 
 
 

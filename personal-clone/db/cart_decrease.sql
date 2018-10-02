@@ -1,7 +1,6 @@
-delete from cart 
-where cart_id = $1
-and user_id = $2;
-
+update cart
+set quantity = quantity - 1
+where cart_id = $1;
 select * from cart
 join products on products.product_id = cart.product_id
 join product_images on product_images.product_id = products.product_id

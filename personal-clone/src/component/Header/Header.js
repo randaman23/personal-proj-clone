@@ -58,7 +58,7 @@ class Header extends Component {
         ) : null}
 
         <Link to="/">
-          <img
+          <img className="sundance_main"
             src="https://cdn.shopify.com/s/files/1/1668/0025/t/8/assets/Sundance.svg?14038820506006361377"
             alt=""
           />
