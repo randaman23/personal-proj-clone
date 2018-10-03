@@ -31,9 +31,11 @@ class Category extends Component {
       );
     });
     return (
-      <div className="main_category">
-        <Header/>
-        {categoryDisplay}
+      <div>
+        <Header />
+        <div className="main_category">
+          <div className="category_display">{categoryDisplay}</div>
+        </div>
       </div>
     );
   }

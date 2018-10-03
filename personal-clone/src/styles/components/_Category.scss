@@ -1,10 +1,14 @@
 .main_category{
-    width: 163.53px;
-    height: 179.88px;
-    // display: flex;
-	// flex-direction: row;
-	// flex-wrap: wrap;
-	// justify-content: space-around;
-	// align-items: flex-start;
-	// align-content: flex-start;
+	width: 100vw;
+	height: 180px;
+}
+.category_display{
+    // width: 163.53px;
+    // height: 179.88px;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: flex-start;
+	align-content: flex-start;
 }

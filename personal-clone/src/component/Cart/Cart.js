@@ -49,6 +49,11 @@ class Cart extends Component {
         console.log(res)
     })
 }
+handleTotal(){
+  let total = this.state.cart.map(e => {
+    return +e.price.slice(1) * e.quantity.toFixed(2)
+  })
+}
 
   render() {
     console.log(this.state);
@@ -75,7 +80,7 @@ class Cart extends Component {
     return (
       <div>
         <Header />
-        <p>Subtotal </p>
+        <p>Subtotal {this.state.total} </p>
         <StripeCheckout
                 name="Sunbance Mountain Resort"
                 description="Payment for Items"

@@ -4,19 +4,26 @@
 
 h1 {
   font: {
-    family: 'Abril Fatface';
+    family: ' Dala Floda Web, Times, "Times New Roman", serif';
     size: 40px;
   }
 }
 
 
-p, a, div, button {
+ a, div, button {
   font: {
     family: 'Open Sans', sans-serif;
     size: 16px;
   }
+  p {
+    font: {
+      font-family: "Lora", serif;
+      font-size: 11px;
+    }
+  }
 }
 
 body {
-  background: $light;
+  background: #fff;
+  
 }

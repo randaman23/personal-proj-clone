@@ -58,15 +58,18 @@ class Header extends Component {
         ) : null}
 
         <Link to="/">
-          <img className="sundance_main"
+          <img
+            id="home_link"
             src="https://cdn.shopify.com/s/files/1/1668/0025/t/8/assets/Sundance.svg?14038820506006361377"
             alt=""
           />
         </Link>
-        <div>{count}</div>
-        <Link to="/cart">
-          <button>Cart</button>
-        </Link>
+        <div className="cart_btn">
+          {count}
+          <Link to="/cart">
+            <button>cart</button>
+          </Link>
+        </div>
         <Link to="/login">
           <button>Login</button>
         </Link>

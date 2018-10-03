@@ -72,7 +72,8 @@ module.exports = {
        }
      }
      else {
-      productIdx = cart.findIndex((e) => e.product_id === product_id)
+       console.log(cart)
+      productIdx = cart.findIndex((e) => e.cpi === product_id)
       if(productIdx !== -1) {
         db.product_quant([product_id, req.session.user.user_id])
         .then(cart => res.status(200).send(cart))
