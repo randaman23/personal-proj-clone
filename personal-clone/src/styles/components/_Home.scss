@@ -8,6 +8,7 @@
   img{
     width: 95vw;
     position: relative;
+    margin-top: 100px;
   }
  
 }
@@ -60,8 +61,8 @@ height: 75vh;
 .h2_home{
   position: relative;
   z-index: 2;
-  top: -31vh;
-  left: 6vw;
+  top: -169px;
+  left: 25px;
   font-family: 'Dala Floda Web;'
 }
 .explore_button{
@@ -69,8 +70,8 @@ height: 75vh;
   background: #c5b8af;
   position: relative;
   z-index: 2;
-  top: -29vh;
-  left: 6vw;
+  top: -160px;
+  left: 25px;
   font-size: 11px;
   padding: 12px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -78,10 +79,13 @@ height: 75vh;
   border: none;
 }
 .panel_medium {
-  img{
   width: 95vw;
   height: 45vh;
+  img{
+  // width: 95vw;
+  // height: 45vh;
   position: relative;
+  margin-top: 100px;
   }
   color: rgb(249, 251, 252);
   margin-top: 45px;

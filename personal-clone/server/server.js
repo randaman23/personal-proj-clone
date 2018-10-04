@@ -27,6 +27,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }))
+app.use( express.static( `${__dirname}/../build` ) );
 
 app.use((req, res, next) => {
     if(ENVIRONMENT === 'dev') {

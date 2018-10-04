@@ -5,10 +5,11 @@ import { Link } from "react-router-dom";
 class Store extends Component {
   render() {
     return (
-      <section className="store_main">
+      <div>
         <div className="main_header">
           <Header />
         </div>
+      <section className="store_main">
         {/* <div>
           <img src="https://cdn.shopify.com/s/files/1/1668/0025/files/Glass_Ecomm_1200x.jpg?v=1532721248" alt=""/>
         </div> */}
@@ -53,6 +54,7 @@ class Store extends Component {
           </Link>
         </div>
       </section>
+      </div>
     );
   }
 }

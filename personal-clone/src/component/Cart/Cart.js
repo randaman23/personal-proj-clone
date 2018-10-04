@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Header from "../Header/Header";
 import { addToCart } from "../../ducks/reducer";
 import { connect } from "react-redux";
-import StripeCheckout from "react-stripe-checkout"
+import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 
 class Cart extends Component {
@@ -13,8 +13,8 @@ class Cart extends Component {
       total: 0
     };
     this.deleteItem = this.deleteItem.bind(this);
-    this.handleIncrease = this.handleIncrease.bind(this)
-    this.handleDecrease = this.handleDecrease.bind(this)
+    this.handleIncrease = this.handleIncrease.bind(this);
+    this.handleDecrease = this.handleDecrease.bind(this);
   }
 
   componentDidMount() {
@@ -33,27 +33,27 @@ class Cart extends Component {
 
   handleIncrease(id) {
     axios.put(`/api/increase/${id}`).then(res => {
-      this.setState({cart: res.data})
-    })
+      this.setState({ cart: res.data });
+    });
   }
 
   handleDecrease(id) {
     axios.put(`/api/decrease/${id}`).then(res => {
-      this.setState({cart: res.data})
-    })
+      this.setState({ cart: res.data });
+    });
   }
 
-  onToken = (token) => {
-    token.card = void 0
-    axios.post('/api/payment', {token, total: this.state.total}).then(res => {
-        console.log(res)
-    })
-}
-handleTotal(){
-  let total = this.state.cart.map(e => {
-    return +e.price.slice(1) * e.quantity.toFixed(2)
-  })
-}
+  onToken = token => {
+    token.card = void 0;
+    axios.post("/api/payment", { token, total: this.state.total }).then(res => {
+      console.log(res);
+    });
+  };
+  componentDidUpdate() {
+    let total = this.state.cart.map(e => {
+      return +e.price.slice(1) * e.quantity.toFixed(2);
+    });
+  }
 
   render() {
     console.log(this.state);
@@ -71,7 +71,10 @@ handleTotal(){
           </span>
           <span>
             {" "}
-            <button onClick={() => this.handleIncrease(e.cart_id)}>+</button> <button onClick={() => this.handleDecrease(e.cart_id)}>-</button>{" "}
+            <button onClick={() => this.handleIncrease(e.cart_id)}>
+              +
+            </button>{" "}
+            <button onClick={() => this.handleDecrease(e.cart_id)}>-</button>{" "}
           </span>
         </div>
       );
@@ -79,17 +82,24 @@ handleTotal(){
 
     return (
       <div>
+        <div className="main_header">
+
         <Header />
-        <p>Subtotal {this.state.total} </p>
-        <StripeCheckout
-                name="Sunbance Mountain Resort"
-                description="Payment for Items"
-                image="http://via.placeholder.com/100x100"
-                token= {this.onToken}
-                stripeKey={process.env.REACT_APP_STRIPE_KEY}
-                amount={this.state.total}
+        </div>
+        <div>
+          <div className="subtotal">
+            <p>Subtotal {this.state.total} </p>
+            <StripeCheckout
+              name="Sunbance Mountain Resort"
+              description="Payment for Items"
+              image="http://via.placeholder.com/100x100"
+              token={this.onToken}
+              stripeKey={process.env.REACT_APP_STRIPE_KEY}
+              amount={this.state.total}
             />
-        {this.state.cart.length ? items : null}
+          </div>
+          {this.state.cart.length ? items : null}
+        </div>
       </div>
     );
   }

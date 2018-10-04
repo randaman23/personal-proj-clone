@@ -11,7 +11,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <div className="header">
+        <div className="main_header">
           <Header />
         </div>
         <div className="home_main">

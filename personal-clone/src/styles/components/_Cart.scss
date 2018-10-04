@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    margin-top: 103px;
 
 }
 
@@ -17,4 +18,8 @@
     font-size: 1.08153rem;
     text-align: center;
     // font-family: Helvetica,Arial,Verdana,sans-serif;
+}
+.subtotal{
+    margin-top: -3px;
+    position: fixed;
 }
