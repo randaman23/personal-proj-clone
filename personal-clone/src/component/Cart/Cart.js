@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Header from "../Header/Header";
-import { addToCart } from "../../ducks/reducer";
+import { addToCart, cartCount } from "../../ducks/reducer";
 import { connect } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
@@ -10,7 +10,7 @@ class Cart extends Component {
     super(props);
     this.state = {
       cart: [],
-      total: 0
+      grand: 0
     };
     this.deleteItem = this.deleteItem.bind(this);
     this.handleIncrease = this.handleIncrease.bind(this);
@@ -18,28 +18,39 @@ class Cart extends Component {
   }
 
   componentDidMount() {
-    axios.get("/api/getusercart").then(res =>
-      this.setState({
-        cart: res.data
-      })
-    );
+    axios.get("/api/getusercart").then(res => {
+     this.total(res)
+    });
+  }
+  total(res){
+    let grandTotal = 0
+    let mapTotal = res.data.map(e => {
+      e.subtotal = +e.price.slice(1) * e.quantity;
+      grandTotal += e.subtotal
+      return e;
+    });
+    this.setState({
+      cart: mapTotal,
+      grand: grandTotal.toFixed(2)
+    });
   }
 
   deleteItem(id) {
     axios.delete(`/api/delete/${id}`).then(res => {
-      this.setState({ cart: res.data });
+      this.total(res)
+      this.props.cartCount(res.data[0].res);
     });
   }
 
   handleIncrease(id) {
     axios.put(`/api/increase/${id}`).then(res => {
-      this.setState({ cart: res.data });
+      this.total(res)
     });
   }
 
   handleDecrease(id) {
     axios.put(`/api/decrease/${id}`).then(res => {
-      this.setState({ cart: res.data });
+      this.total(res);
     });
   }
 
@@ -49,11 +60,6 @@ class Cart extends Component {
       console.log(res);
     });
   };
-  componentDidUpdate() {
-    let total = this.state.cart.map(e => {
-      return +e.price.slice(1) * e.quantity.toFixed(2);
-    });
-  }
 
   render() {
     console.log(this.state);
@@ -83,12 +89,11 @@ class Cart extends Component {
     return (
       <div>
         <div className="main_header">
-
-        <Header />
+          <Header />
         </div>
         <div>
           <div className="subtotal">
-            <p>Subtotal {this.state.total} </p>
+            <p>Subtotal {this.state.grand} </p>
             <StripeCheckout
               name="Sunbance Mountain Resort"
               description="Payment for Items"
@@ -113,5 +118,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { addToCart }
+  { addToCart, cartCount }
 )(Cart);

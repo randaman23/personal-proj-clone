@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Header from "../Header/Header";
-import { addToCart } from "../../ducks/reducer";
+import { addToCart, cartCount } from "../../ducks/reducer";
 import { connect } from "react-redux";
 
 class Item extends Component {
@@ -30,9 +30,10 @@ class Item extends Component {
       this.setState({
         item: res.data[0],
         colors: res.data.map(e => {
-          return { name: e.color, id: e.color_id }}),
+          return { name: e.color, id: e.color_id };
+        }),
         category: res.data[0].category,
-        selectSize: res.data[0].category !== 'apparel' ? '' : "SMALL",
+        selectSize: res.data[0].category !== "apparel" ? "" : "SMALL",
         selectedImage: res.data[0].image_url,
         selectColor: res.data[0].color_id,
         images: res.data.map(e => {
@@ -48,7 +49,7 @@ class Item extends Component {
   addItem() {
     const { product_id } = this.state.item;
     const { selectQuantity, selectColor, selectSize } = this.state;
-  
+
     axios
       .post("/api/additem", {
         product_id,
@@ -56,7 +57,10 @@ class Item extends Component {
         selectColor,
         selectSize
       })
-      .then(res => this.props.addToCart(res.data));
+      .then(res => {
+        this.props.addToCart(res.data);
+        this.props.cartCount(res.data[0].res);
+      });
   }
 
   handleColor(e) {
@@ -71,7 +75,7 @@ class Item extends Component {
   }
 
   handleSize(e) {
-      this.setState({ selectSize: e.target.value });
+    this.setState({ selectSize: e.target.value });
   }
 
   handleQuantity(e) {
@@ -93,40 +97,59 @@ class Item extends Component {
     return (
       <div>
         <Header />
-        <h1>{this.state.item.product_name}</h1>
-        <p>{item.price}</p>
-        <p>{item.info}</p>
+        <div>
+          <div className="item_main">
+            <div>
+              <h1 className="product_header">{this.state.item.product_name}</h1>
+              <p className="product_price">{item.price}</p>
+            </div>
+            {this.state.colors.length > 1 ? (
+              <div className="selector_wrapper">
+                <p className="label">Color</p>
+                <select onChange={this.handleColor} className="product_options">
+                  {colorOptions}
+                </select>
+              </div>
+            ) : null}
+            {item.category === "apparel" ? (
+              <div className="selector_wrapper">
+                <p className="label">Size</p>
+                <select className="product_options" onChange={this.handleSize}>
+                  <option value="SMALL">SMALL</option>
+                  <option value="MEDIUM">MEDIUM</option>
+                  <option value="LARGE">LARGE</option>
+                  <option value="X-LARGE">X-LARGE</option>
+                  <option value="XX-LARGE">XX-LARGE</option>
+                  <option value="X-SMALL">XS</option>
+                </select>
+              </div>
+            ) : null}
+            <div className="selector_wrapper">
+              <p className="label">Qty</p>
+              <select
+                className="product_options"
+                onChange={this.handleQuantity}
+              >
+                <option value="1">ONE</option>
+                <option value="2">TWO</option>
+                <option value="3">THREE</option>
+                <option value="4">FOUR</option>
+                <option value="5">FIVE</option>
+                <option value="6">SIX</option>
+                <option value="7">SEVEN</option>
+                <option value="8">EIGHT</option>
+                <option value="9">NINE</option>
+                <option value="10">TEN</option>
+              </select>
+            </div>
 
-        {colorOptions.length ? (
-          <select onChange={this.handleColor}>{colorOptions}</select>
-        ) : null}
-
-        {item.category === "apparel" ? (
-          <select onChange={this.handleSize}>
-            <option value="SMALL">SMALL</option>
-            <option value="MEDIUM">MEDIUM</option>
-            <option value="LARGE">LARGE</option>
-            <option value="X-LARGE">X-LARGE</option>
-            <option value="XX-LARGE">XX-LARGE</option>
-            <option value="X-SMALL">XS</option>
-          </select>
-        ) : null}
-        <select onChange={this.handleQuantity}>
-          <option value="1">ONE</option>
-          <option value="2">TWO</option>
-          <option value="3">THREE</option>
-          <option value="4">FOUR</option>
-          <option value="5">FIVE</option>
-          <option value="6">SIX</option>
-          <option value="7">SEVEN</option>
-          <option value="8">EIGHT</option>
-          <option value="9">NINE</option>
-          <option value="10">TEN</option>
-        </select>
-
-        <button onClick={this.addItem}>ADD TO CART</button>
-
-        <img src={selectedImage} alt="" />
+            <button className="product_add" onClick={this.addItem}>
+              ADD TO CART
+            </button>
+            <p className="product_information">{item.info}</p>
+            <img src={selectedImage} alt="" className="item_img" />
+          </div>
+        </div>
       </div>
     );
   }
@@ -139,5 +162,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { addToCart }
+  { addToCart, cartCount }
 )(Item);

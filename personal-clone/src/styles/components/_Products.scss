@@ -1,9 +1,30 @@
 .products_main{
     width: 48vw;
     margin-top: 165px;
+    margin-bottom: -145px;
+   padding: 17px;
    img{
        width: 40vw;
        height: 27vh;
    }
     
+}
+.name_price{
+    color: #292b2e;
+    line-height: 1.5;
+    font-family: ' Dala Floda Web, Times, "Times New Roman", serif';
+    -webkit-font-smoothing: antialiased;
+    font-size: 1rem;
+    font-weight: 300;
+}
+.name{
+    font-family: ' Dala Floda Web, Times, "Times New Roman", serif';
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+}
+.price{
+    font-family: ' Dala Floda Web, Times, "Times New Roman", serif';
+    text-align: center;
+    font-size: 15px;
 }

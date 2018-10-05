@@ -34,7 +34,12 @@ class Category extends Component {
       <div>
         <Header />
         <div className="main_category">
-          <div className="category_display">{categoryDisplay}</div>
+          <div className="category_display">
+          {/* <div> */}
+          {categoryDisplay}
+
+          {/* </div> */}
+          </div>
         </div>
       </div>
     );

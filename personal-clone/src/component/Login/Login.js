@@ -14,8 +14,19 @@ class Login extends Component {
     return (
       <div>
         <Header />
-        <h1>Login</h1>
-        <button onClick={this.login}>Login</button>
+        <div className="main_login">
+          <figure>
+            <img
+              src="https://www.sundanceresort.com/wp-content/uploads/2016/07/event-bg-2000x1000-c-center.jpg"
+              alt=""
+            />
+            <div className="login_btn">
+              <button onClick={this.login} className="login_btn">
+                <h1>Login</h1>
+              </button>
+            </div>
+          </figure>
+        </div>
       </div>
     );
   }

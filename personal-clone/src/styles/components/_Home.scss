@@ -33,6 +33,28 @@ height: 75vh;
     top: -300px;
     left: 25px;
 }
+.header_beer{
+  font-size: 50px;
+	font-weight: 700;
+  color: rgb(249, 251, 252);
+  position: relative;
+  z-index: 2;
+  margin-top: -190px;
+  left: 25px;
+}
+.explore_button2{
+  color: #212121;
+  background: #c5b8af;
+  position: relative;
+  z-index: 2;
+  top: 18px;
+  left: 25px;
+  font-size: 11px;
+  padding: 12px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 0.06em;
+  border: none;
+}
 .sundance_quote {
   font-family: "Lora", serif;
   width: 284px;
@@ -89,6 +111,7 @@ height: 75vh;
   }
   color: rgb(249, 251, 252);
   margin-top: 45px;
+  margin-bottom: -96px;
   // margin-bottom: 6px;
 }
 // .mountain_reservation{
@@ -101,6 +124,176 @@ height: 75vh;
 .upcoming_events{
 width: 95vw;
 height: 28vh;
-background-color: rgb(87, 87, 116);
+background-color:	#6CB4EE;
+margin-top: 158px;
 }
-
+.header_upcoming{
+  width:250px;
+  height: 18px;
+  font-size: 18px;
+  color: #fff;
+  z-index: 2;
+  margin-top: 14px;
+  margin-left: 25px;
+  font-family: 'Dala Floda Web;';
+}
+.paragraph_upcoming{
+  width:323px;
+  height: 95px;
+  font-family: "Lora", serif;
+  font-size: 11px;
+  line-height: 1.4;
+  margin-top: 16px;
+  margin-left: 25px;;
+}
+.event_btn{
+  color: white;
+  background: #212121;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  position: relative;
+  z-index: 2;
+  top: -18px;
+  left: 25px;
+  border: none;
+  font-size: 11px;
+  padding: 12px;
+  letter-spacing: 0.06em;
+}
+.header_spa{
+  font-size: 43px;
+	font-weight: 700;
+  color: rgb(249, 251, 252);
+  position: relative;
+  z-index: 2;
+  margin-top: -228px;
+  left: 38px;
+}
+.explore_btn3{
+  color: #212121;
+  background: #c5b8af;
+  position: relative;
+  z-index: 2;
+  top: 7px;
+  left: 245px;
+  font-size: 11px;
+  padding: 12px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 0.06em;
+  border: none;
+}
+.panel_spa{
+  margin-top: -86px;
+}
+.lodging{
+  margin-top: 160px;
+  margin-bottom: -130px;
+  width: 95vw;
+height: 28vh;
+background-color:	#9F8170;
+}
+.header_lodgings{
+  width:250px;
+  height: 18px;
+  font-size: 18px;
+  color: #fff;
+  z-index: 2;
+  margin-top: 14px;
+  margin-left: 25px;
+  font-family: 'Dala Floda Web;';
+}
+.para_lodge{
+  width:323px;
+  height: 95px;
+  font-family: "Lora", serif;
+  font-size: 12px;
+  line-height: 1.4;
+  margin-top: 16px;
+  margin-left: 25px;;
+}
+.specials_btn{
+  color: white;
+  background: #212121;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  position: relative;
+  z-index: 2;
+  top: -8px;
+  left: 25px;
+  border: none;
+  font-size: 11px;
+  padding: 12px;
+  letter-spacing: 0.06em;
+}
+.room_btn{
+  color: #212121;
+  background: #c5b8af;
+  position: relative;
+  z-index: 2;
+  top: -215px;
+  left: 226px;
+  font-size: 11px;
+  padding: 12px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 0.06em;
+  border: none;
+}
+.header_food{
+  font-size: 43px;
+	font-weight: 700;
+  color: rgb(249, 251, 252);
+  position: relative;
+  z-index: 2;
+  margin-top: -115px;
+  left: 25px;
+}
+.food_btn{
+  color: #212121;
+  background: #c5b8af;
+  position: relative;
+  z-index: 2;
+  top: 11px;
+  left: 25px;
+  font-size: 11px;
+  padding: 12px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 0.06em;
+  border: none;
+}
+.reserve_table{
+  width: 95vw;
+height: 28vh;
+background-color: #8FBC8F;
+margin-top: 80px;
+margin-bottom: -130px;
+}
+.table_reserve{
+  width:250px;
+  height: 18px;
+  font-size: 18px;
+  color: #fff;
+  z-index: 2;
+  margin-top: 14px;
+  margin-left: 25px;
+  font-family: 'Dala Floda Web;';
+}
+.para_table{
+  width:323px;
+  height: 95px;
+  font-family: "Lora", serif;
+  font-size: 12px;
+  line-height: 1.4;
+  margin-top: 5px;
+  margin-left: 25px;;
+}
+.dining_btn{
+  color: white;
+  background: #212121;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  position: relative;
+  z-index: 2;
+  top: 7px;
+  left: 25px;
+  border: none;
+  font-size: 11px;
+  padding: 12px;
+  letter-spacing: 0.06em;
+}

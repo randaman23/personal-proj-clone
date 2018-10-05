@@ -56,6 +56,8 @@ app.put('/api/increase/:id', controller.cartIncrease)
 app.put('/api/decrease/:id', controller.cartDecrease)
 app.post('/api/payment', controller.handlePayment)
 
+app.get('/auth/logout', controller.logout)
+
 
 
 

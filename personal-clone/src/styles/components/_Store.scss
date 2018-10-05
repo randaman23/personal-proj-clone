@@ -1,20 +1,95 @@
 .store_main{
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: flex-start;
+    // align-items: center;
+    // img{
+    //     width: 90vw;
+    //     position: relative;
+    //     margin: 0 0 12px 0px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
+    text-decoration: none;
     img{
-        width: 95vw;
-        position: relative;
-        margin: 0 0 12px 0px;
+      width: 90vw;
+      position: relative;
+      margin-top: 100px;
     }
-}
-.first_two{
-    width: 95vw;
-    // height: 20vh;
-}
+    }
 
-.last_three{
-    width: 95vw;
+// .first_two{
+//     width: 95vw;
+//     // height: 20vh;
+// }
 
+// .last_three{
+//     width: 95vw;
+// }
+
+
+.sun_apparel{
+    font-size: 30px;
+  color: rgb(249, 251, 252);
+  position: relative;
+  z-index: 2;
+  margin-top: -187px;
+  text-decoration-style: none;
+
+  left: 25px;
+}
+.one{
+    margin-top: 10px;
+    margin-bottom: -85px;
+    text-decoration-style: none;
+}
+.two{
+    margin-top: 160px;
+}
+.hand_soap{
+    font-size: 30px;
+    color: rgb(249, 251, 252);
+    position: relative;
+    z-index: 2;
+    margin-top: -175px;
+    margin-left: 37px;
+    text-decoration: none;
+}
+.three{
+    margin-top: 60px;
+}
+.accessories{
+    font-size: 30px;
+    color: rgb(249, 251, 252);
+    position: relative;
+    z-index: 2;
+    margin-top: -86px;
+    margin-left: 29px;
+    text-decoration: none;
+}
+.four{
+    margin-top: -30px;
+}
+.glass{
+    font-size: 30px;
+    color: rgb(249, 251, 252);
+    position: relative;
+    z-index: 2;
+    margin-top: -86px;
+    margin-left: 80px;
+    text-decoration: none;
+}
+.five{
+    margin-top: -30px;
+}
+.hats{
+    font-size: 30px;
+    color: rgb(249, 251, 252);
+    position: relative;
+    z-index: 2;
+    margin-top: -86px;
+    margin-left: 80px;
+    text-decoration: none;
 }

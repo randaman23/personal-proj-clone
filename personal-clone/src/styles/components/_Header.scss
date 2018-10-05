@@ -15,9 +15,66 @@
 }
 
 #home_link{
-    width: 140px;
+    width: 160px;
     height: 45.41px;
+    margin-left: 0px;
 }
 // .cart_btn{
 
 // }
+.menu-btn{
+    top: 0;
+    width: 100vw;
+    margin-right: 10px;
+    left: 0;
+    position: fixed;
+    text-align: center;
+    /* z-index: 10; */
+    padding: 6rem 4rem 4rem 4rem;
+    background: rgba(20,20,20,0.98);
+    font-size: 1.08153rem;
+    z-index: 10;
+}
+
+.dropdown{
+    color: #fff;
+    font-size: 22px;
+    font-family: 'Dala Floda Web'
+    
+}
+.counter{
+    margin-right: 0.35em;
+    top: 2.23em;
+    right: 6.75em;
+    position: absolute;
+    background: #000;
+    color: white;
+    font-size: .59223rem;
+    font-family: Helvetica,Arial,Verdana,sans-serif;
+    font-weight: bold;
+    width: 1.75em;
+    height: 1.75em;
+    line-height: 1.75;
+    border-radius: 50%;
+    text-align: center;
+}
+.mini_menu{
+    width: 22px;
+    height: 22px;
+    margin-left: 32px;
+}
+.shop_bag{
+    width: 20px;
+    height: 20px;
+    // margin-left: -25px;
+}
+.mini_login{
+    width: 20px;
+    height: 20px;
+    
+}
+.cart_btn2{
+}
+.login_link{
+    margin-right: 20px;
+}

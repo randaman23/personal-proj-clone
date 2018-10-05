@@ -49,47 +49,55 @@ class Home extends Component {
               src="https://www.sundanceresort.com/wp-content/uploads/2018/09/Hog_And_Beer_Pour2-600x0-c-default.jpg"
               alt=""
             />
+            <h1 className="header_beer">Hog & Beer Event</h1>
+            <button className="explore_button2">EXPLORE</button>
           </div>
           <div className="upcoming_events">
-            <h2>UPCOMING EVENTS</h2>
-            <p>
+            <h2 className="header_upcoming">UPCOMING EVENTS</h2>
+            <p className="paragraph_upcoming">
               Sundance Mountain Resort is more than just great skiing, amazing
               food and lodging. We offer a full calendar of events and
               activities for you to enjoy. Browse our calendar of events to plan
               your next trip, date or get-a-way.
             </p>
-            <button>VIEW EVENT CALENDER</button>
+            <button className="event_btn">VIEW EVENT CALENDER</button>
           </div>
-          <div className="panel_medium">
+          <div className="panel_spa">
             <img
               src="https://www.sundanceresort.com/wp-content/uploads/2016/08/Spa_Dec_2017-77-1-600x0-c-default.jpg"
               alt=""
             />
+            <h1 className="header_spa">Spa Treatments</h1>
+            <button className="explore_btn3">EXPLORE</button>
           </div>
           <div className="lodging">
-            <h2>LODGING SPECIALS</h2>
-            <p>
+            <h2 className="header_lodgings">LODGING SPECIALS</h2>
+            <p className="para_lodge">
               Fall and Winter are some of the best times to visit Sundance
               Mountain Resort. Enjoy the fresh air and the rejuvenating spirit
               of the mountains. Relax and unwind in your own private mountain
               home or one of our beautiful mountain suites.
             </p>
+            <button className="specials_btn">VIEW SPECIALS</button>
           </div>
           <div className="panel_medium">
             <img
               src="https://www.sundanceresort.com/wp-content/uploads/2016/08/Schultz-056-600x0-c-default.jpg"
               alt=""
             />
+            <button className="room_btn">VIEW ROOMS</button>
           </div>
           <div className="panel_medium">
             <img
               src="https://www.sundanceresort.com/wp-content/uploads/2017/12/Food-Mark-Weinberg-Dec-2017-264-600x0-c-default.jpg"
               alt=""
             />
+            <h1 className="header_food">Food as Art</h1>
+            <button className="food_btn">EXPLORE THE TREE ROOM</button>
           </div>
           <div className="reserve_table">
-            <h2>RESERVE A TABLE ONLINE</h2>
-            <p>
+            <h2 className="table_reserve">RESERVE A TABLE ONLINE</h2>
+            <p className="para_table">
               Sundance Mountain Resort offers a wide variety of dining
               experience for all occasions. Dine in elegance at the Tree Room or
               enjoy the rustic atmosphere in the Foundry Grill or the casual
@@ -97,7 +105,7 @@ class Home extends Component {
               yourself falling in love with the tastes, sounds and scene found
               at Sundance.
             </p>
-            <button>VIEW DINING OPTIONS</button>
+            <button className="dining_btn">VIEW DINING OPTIONS</button>
           </div>
           <div className="panel_medium">
             <img

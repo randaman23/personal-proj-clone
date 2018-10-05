@@ -12,6 +12,7 @@ class Header extends Component {
     };
     this.showMenu = this.showMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
+    
   }
 
   componentDidMount() {
@@ -19,7 +20,14 @@ class Header extends Component {
       .get(`/api/cartcount`)
       .then(count => this.props.cartCount(count.data[0].count));
   }
-
+componentDidUpdate(prevProps){
+if(prevProps.count !== this.props.count) {
+  console.log(prevProps.count)
+  axios
+  .get(`/api/cartcount`)
+  .then(count => this.props.cartCount(count.data[0].count));
+}
+}
   showMenu(e) {
     e.preventDefault();
     this.setState({ showMenu: true }, () => {
@@ -40,7 +48,13 @@ class Header extends Component {
     let { count } = this.props;
     return (
       <div className="main_header">
-        <button onClick={this.showMenu}>Menu</button>
+        <button onClick={this.showMenu}>
+          <img
+            className="mini_menu"
+            src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png"
+            alt=""
+          />
+        </button>
         {this.state.showMenu ? (
           <div
             className="menu-btn"
@@ -48,12 +62,24 @@ class Header extends Component {
               this.dropdownMenu = element;
             }}
           >
-            <Link to="/store">
-              <button>Shop</button> <br />
-            </Link>
-            <button>Activities</button> <br />
-            <button>Events</button> <br />
-            <button>Stay</button>
+            <div className="dropdown">
+              <Link to="/">
+                {" "}
+                <button className="dropdown">Home</button>
+              </Link>{" "}
+              <br />
+              <Link to="/store">
+                <button className="dropdown">Shop</button> <br />
+              </Link>
+              <button className="dropdown">Activities</button> <br />
+              <button className="dropdown">Events</button> <br />
+              <button className="dropdown">Stay</button> <br />
+              <a href={process.env.REACT_APP_HOME}>
+                <button className="dropdown">
+                  Sign Out
+                </button>
+              </a>
+            </div>
           </div>
         ) : null}
 
@@ -64,14 +90,26 @@ class Header extends Component {
             alt=""
           />
         </Link>
-        <div className="cart_btn">
-          {count}
           <Link to="/cart">
-            <button>cart</button>
-          </Link>
+        <div className="cart_btn">
+            <button className="cart_btn2">
+              <img
+                className="shop_bag"
+                src="https://www.freeiconspng.com/uploads/bag-png-13.png"
+                alt=""
+              />
+            </button>
         </div>
-        <Link to="/login">
-          <button>Login</button>
+          </Link>
+          <span className="counter">{count}</span>
+        <Link to="/login" className="login_link">
+          <button>
+            <img
+              className="mini_login"
+              src="https://mbtskoudsalg.com/images/login-icon-png-8.png"
+              alt=""
+            />
+          </button>
         </Link>
       </div>
     );
