@@ -60,6 +60,7 @@ class Cart extends Component {
     token.card = void 0;
     axios.post("/api/payment", { token, grand: this.state.grand }).then(res => {
       this.props.history.push("/")
+      // alert('Thank you for being Awesome! Your order has been received!')
     });
   };
 
