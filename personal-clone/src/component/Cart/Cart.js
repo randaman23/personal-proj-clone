@@ -59,7 +59,7 @@ class Cart extends Component {
   onToken = token => {
     token.card = void 0;
     axios.post("/api/payment", { token, grand: this.state.grand }).then(res => {
-      console.log(res);
+      this.props.history.push("/")
     });
   };
 

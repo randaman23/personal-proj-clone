@@ -182,7 +182,7 @@ module.exports = {
   },
 
   handlePayment: (req, res) => {
-    // const db = req.app.get("db")
+    const db = req.app.get("db")
     const {
       grand,
       token: { id }
@@ -201,7 +201,7 @@ module.exports = {
           return res.status(500).send(err);
         } else {
           console.log(charge);
-          // db.clear_cart([user_id])
+          db.clear_cart([req.session.user.user_id])
           return res.status(200).send(charge);
         }
       }
