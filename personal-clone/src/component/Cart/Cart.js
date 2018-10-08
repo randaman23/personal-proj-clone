@@ -27,7 +27,9 @@ class Cart extends Component {
     let mapTotal = res.data.map(e => {
       e.subtotal = +e.price.slice(1) * e.quantity;
       grandTotal += e.subtotal
+      console.log(typeof grandTotal)
       return e;
+      
     });
     this.setState({
       cart: mapTotal,
@@ -56,7 +58,7 @@ class Cart extends Component {
 
   onToken = token => {
     token.card = void 0;
-    axios.post("/api/payment", { token, total: this.state.total }).then(res => {
+    axios.post("/api/payment", { token, grand: this.state.grand }).then(res => {
       console.log(res);
     });
   };
@@ -73,7 +75,7 @@ class Cart extends Component {
           <span>
             {e.price} x {e.quantity} = $
             {(+e.price.slice(1) * e.quantity).toFixed(2)}{" "}
-            <button onClick={() => this.deleteItem(e.cart_id)}>Delete</button>
+            <button onClick={() => this.deleteItem(e.cart_id)}>Remove</button>
           </span>
           <span>
             {" "}
@@ -93,7 +95,7 @@ class Cart extends Component {
         </div>
         <div>
           <div className="subtotal">
-            <p>Subtotal {this.state.grand} </p>
+            <p>Subtotal ${this.state.grand} </p>
             <StripeCheckout
               name="Sunbance Mountain Resort"
               description="Payment for Items"

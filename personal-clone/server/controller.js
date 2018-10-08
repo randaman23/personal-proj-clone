@@ -1,3 +1,7 @@
+// require('dotenv').config()
+const stripe = require('stripe')(process.env.STRIPE_SECRET)
+// const {STRIPE_SECRET} = proces.env 
+
 module.exports = {
   getProducts: (req, res) => {
     const db = req.app.get("db");
@@ -178,13 +182,15 @@ module.exports = {
   },
 
   handlePayment: (req, res) => {
+    // const db = req.app.get("db")
     const {
-      total,
+      grand,
       token: { id }
     } = req.body;
+    console.log(typeof grand)
     stripe.charges.create(
       {
-        amount: total,
+        amount: Number(grand),
         currency: "usd",
         source: id,
         description: "Test Charge from Randall"
@@ -195,6 +201,7 @@ module.exports = {
           return res.status(500).send(err);
         } else {
           console.log(charge);
+          // db.clear_cart([user_id])
           return res.status(200).send(charge);
         }
       }
