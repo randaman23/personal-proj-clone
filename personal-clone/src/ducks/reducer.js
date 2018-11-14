@@ -25,7 +25,7 @@ export function addToCart(data) {
 export function cartCount(data) {
   return {
     type: CART_COUNT,
-    payload: data
+    payload: data 
   };
 }
 

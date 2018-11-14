@@ -27,7 +27,7 @@ let userRes = await axios.get(`https://${REACT_APP_DOMAIN}/userinfo?access_token
     let createdUser = await db.create_user([given_name, family_name, email, sub])
     req.session.user = createdUser[0]
   }
-  res.redirect('/')
+  res.redirect('/') 
 
  },
 
